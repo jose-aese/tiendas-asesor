@@ -1,7 +1,3 @@
-
-
-
-
 .rojo {
   border-right: 5px solid red;
 }
@@ -10,11 +6,9 @@
   border-right: 5px solid green;
 }
 
-
 .amarillo {
   border-right: 5px solid yellow;
 }
-
 
 #subs ul {
   padding-right: 0px;
@@ -36,7 +30,6 @@
   }
 }
 
-
 @media screen and (max-width: 767px) {
   .card-container a {
     display: flex;
@@ -44,7 +37,7 @@
     height: 30px;
     flex-flow: row wrap;
     flex-direction: row-reverse;
-    
+
     img,
     div,
     #categoria {

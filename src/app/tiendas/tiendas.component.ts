@@ -7,8 +7,8 @@ import { TiendasService } from '../services/tiendas.service';
   styleUrls: ['./tiendas.component.scss'],
 })
 export class TiendasComponent implements OnInit {
-  tiendas: any;
-  tarea: any;
+  
+  tienda: any;
   seleccion: boolean;
   
   

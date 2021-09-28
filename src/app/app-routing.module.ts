@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SearchComponent } from './search/search.component';
 import { TiendasComponent } from './tiendas/tiendas.component';
 
 
@@ -8,7 +7,7 @@ const routes: Routes = [
 
   {
     path: '',
-    component: SearchComponent,
+    component: TiendasComponent,
   },
   // {
   //   path: 'tarea',
