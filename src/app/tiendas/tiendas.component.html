@@ -1,0 +1,40 @@
+<div class="content" role="main">
+
+
+    <div *ngIf="seleccion" class="card-container">
+        <a *ngFor="let tienda of tiendas" (click)='seleccionaTarea(tienda)'
+            [ngClass]="{'verde': tienda.evaluacionAsesor==1, 'rojo': tienda.evaluacionAsesor==0}" class="card"
+            target="_blank" rel="noopener" (mouseenter)="mouseEnter(tienda)" (mouseleave)="mouseLeave(tienda)">
+            <!-- <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z" /></svg> -->
+            <div>
+                
+                <span *ngIf="tienda.direccion" type="submit" class="icon" >? </span>
+                <span *ngIf="tienda.direccion">{{tienda.direccion.calle}}, {{tienda.direccion.colonia}}, {{tienda.direccion.municipio}}, {{tienda.direccion.codigoPostal}}, {{tienda.direccion.entidadFederativa}}</span>
+
+                <span *ngIf="tienda.zonasTrabajo" type="submit" class="icon" >, </span>
+                <span *ngIf="tienda.zonasTrabajo"><span *ngFor="let zona of tienda.zonasTrabajo">{{zona.nombre}} </span></span>
+            </div>
+            
+            <div id="subs">
+                <ul>
+                    <li *ngFor="let subs of tienda.categoria.subcategorias">{{subs.nombre}}<strong>,</strong></li>
+                </ul>
+
+            </div>
+
+            <span id="categoria">{{tienda.categoria.nombre}}</span>
+
+            <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" /></svg>
+            <span><strong>{{tienda.nombreTienda}}</strong></span>
+
+            <br>
+            <img src={{tienda.host}}>
+        </a>
+
+
+    </div>
+
+</div>
+
