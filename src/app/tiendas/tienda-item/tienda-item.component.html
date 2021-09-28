@@ -1,1 +1,21 @@
-<p>tienda-item works!</p>
+<a  [ngClass]="{'verde': tienda.evaluacionAsesor==true, 'rojo': tienda.evaluacionAsesor==false}"  class="card" target="_blank" rel="noopener">
+    <div>
+        <span *ngIf="tienda.direccion" type="submit" class="icon">? </span>
+        <span *ngIf="tienda.direccion">{{tienda.direccion.calle}}, {{tienda.direccion.colonia}},
+            {{tienda.direccion.municipio}}, {{tienda.direccion.codigoPostal}},
+            {{tienda.direccion.entidadFederativa}}</span>
+        <span *ngIf="tienda.zonasTrabajo" type="submit" class="icon">, </span>
+        <span *ngIf="tienda.zonasTrabajo"><span *ngFor="let zona of tienda.zonasTrabajo">{{zona.nombre}} </span></span>
+    </div>
+    <div id="subs">
+        <ul>
+            <li *ngFor="let subs of tienda.categoria.subcategorias">{{subs.nombre}}<strong>,</strong></li>
+        </ul>
+    </div>
+    <span id="categoria">{{tienda.categoria.nombre}}</span>
+    <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" /></svg>
+    <span><strong>{{tienda.nombreTienda}}</strong></span>
+    <br>
+    <img src={{tienda.host}} alt="No existe imagen de la tienda" />
+</a>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TiendasService } from '../services/tiendas.service';
+import { Tienda } from './models/tienda.model';
+
 @Component({
   selector: 'app-tiendas',
   templateUrl: './tiendas.component.html',
@@ -8,15 +9,11 @@ import { TiendasService } from '../services/tiendas.service';
 })
 export class TiendasComponent implements OnInit {
   
-  tienda: any;
-  seleccion: boolean;
-  
-  
 
   constructor(private router: Router) {}
 
   ngOnInit() {
-    console.log("TIENDAS COMPONENT");
+   
   }
 
 

@@ -1,0 +1,16 @@
+@media screen and (max-width: 767px) {
+    .card-container a {
+      display: flex;
+      text-align: center;
+      height: 30px;
+      flex-flow: row wrap;
+      flex-direction: row-reverse;
+  
+      img,
+      div,
+      #categoria {
+        display: none;
+      }
+    }
+  }
+  
