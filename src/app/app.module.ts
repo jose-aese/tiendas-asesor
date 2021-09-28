@@ -12,6 +12,14 @@ import { TiendaItemComponent } from './tiendas/tienda-item/tienda-item.component
 import { SearchComponent } from './tiendas/search/search.component';
 
 
+// REDUX
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
+import { appReducers } from './app.reducer';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +32,12 @@ import { SearchComponent } from './tiendas/search/search.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot(appReducers),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
