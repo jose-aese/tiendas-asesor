@@ -1,3 +1,5 @@
+import { Horario } from './horario.model';
+
 export class Tienda {
   public idUsuario: string;
   public nombreTienda: string;
@@ -5,7 +7,7 @@ export class Tienda {
   public nombrePropietario: string;
   public numeroCelular: string;
   public direccion: any;
-  public horario: any;
+  public horario: Horario;
   public categoria: any;
   public numeroEmpleado: string;
   public idTipoComercio: number;

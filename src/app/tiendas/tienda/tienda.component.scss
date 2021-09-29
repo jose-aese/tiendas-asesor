@@ -102,6 +102,7 @@ button {
 .color-green {
   color: #5fc460;
 }
+
 .text-center {
   text-align: center;
 }
@@ -371,13 +372,13 @@ input[type="text"] {
 .store-details .schedule > div:last-child {
   margin-bottom: 0;
 }
-.store-details span:nth-child(1) {
-  flex-shrink: 0;
-  width: 85px;
-}
-.store-details span:nth-child(2) {
-  width: 100%;
-}
+// .store-details span:nth-child(1) {
+//   flex-shrink: 0;
+//   width: 85px;
+// }
+// .store-details span:nth-child(2) {
+//   width: 100%;
+// }
 .store-tags {
   padding-bottom: 5px;
   padding-top: 5px;
@@ -650,13 +651,19 @@ input[type="text"] {
   .store-info .category {
     font-size: 14px;
   }
-  .store-details span:nth-child(1) {
-    width: 115px;
-  }
+  // .store-details span:nth-child(1) {
+  //   width: 115px;
+  // }
   .product-card {
     width: 33.33333%;
   }
 }
 .flujo::before {
   content: "Concepto: ";
+}
+
+
+
+.siempre{
+  width: auto;
 }

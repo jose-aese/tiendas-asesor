@@ -15,7 +15,6 @@
                 <!-- <button class="share-btn fake-control">Compartir</button> -->
             </div>
 
-            <!-- Store details -->
             <div class="store-details">
                 <div class="detail">
                     <div class="icon">
@@ -31,23 +30,28 @@
                     </div>
                     <div class="content">
                         <div class="collapsable" data-id="horario.disponibilidad">
-                            <div class="collapsable__head" (click)="hora()" >
-                                <div><b>Horario</b><span class="color-red schedule-status">Cerrado</span>
-                                
-                                
-                                    <img   [ngClass]="{'abajo': horario==true, 'arriba': horario==false}" class="collapsable__head pin" src="../../../assets/images/icon-chevron-down.svg" alt="Icono Pin" />
+                            <div class="collapsable__head" (click)="hora()">
+                                <div><b>Horario </b>
+                                    <span [ngClass]="{'color-green': open==true, 'color-red': open==false}">{{openTitle}}</span>
+                                    <img [ngClass]="{'abajo': horario==true, 'arriba': horario==false}"
+                                        class="collapsable__head pin" src="../../../assets/images/icon-chevron-down.svg"
+                                        alt="Icono Pin" />
                                 </div>
-                               
+
                             </div>
-                            <div class="collapsable__content"  *ngIf="horario">
+                            <div class="collapsable__content" *ngIf="horario">
                                 <div class="schedule" data-id="horario.dias">
-                                    <div><span>Lunes </span><span>8:00 - 16:00</span></div>
-                                    <div><span>Martes </span><span>11:00 - 12:00, 13:00 - 17:00</span></div>
+                                    <div *ngIf="!tienda.horario.disponibilidad"><span>Lunes </span><span>8:00 - 16:00</span></div>
+
+
+
+                                    <div *ngIf="tienda.horario.disponibilidad"><span class="siempre">Siempre disponible </span></div>
+                                    <!-- <div><span>Martes </span><span>11:00 - 12:00, 13:00 - 17:00</span></div>
                                     <div><span>Miércoles </span><span>8:00 - 16:00</span></div>
                                     <div><span>Jueves </span><span>8:00 - 16:00</span></div>
                                     <div><span>Viernes </span><span>8:00 - 16:00</span></div>
                                     <div><span>Sábado </span><span>8:00 - 16:00</span></div>
-                                    <div><span>Domingo </span><span>Cerrado</span></div>
+                                    <div><span>Domingo </span><span>Cerrado</span></div> -->
                                 </div>
                             </div>
                         </div>
