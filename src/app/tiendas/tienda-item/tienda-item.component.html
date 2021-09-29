@@ -1,11 +1,12 @@
-<a  [ngClass]="{'verde': tienda.evaluacionAsesor==true, 'rojo': tienda.evaluacionAsesor==false}"  class="card" target="_blank" rel="noopener">
+<a  [ngClass]="{'verde': tienda.evaluacionAsesor==true, 'rojo': tienda.evaluacionAsesor==false}"  class="card" target="_blank" rel="noopener"
+(click)='seleccionaTarea()'> 
     <div>
         <span *ngIf="tienda.direccion" type="submit" class="icon">? </span>
-        <span *ngIf="tienda.direccion">{{tienda.direccion.calle}}, {{tienda.direccion.colonia}},
-            {{tienda.direccion.municipio}}, {{tienda.direccion.codigoPostal}},
-            {{tienda.direccion.entidadFederativa}}</span>
+        <span *ngIf="tienda.direccion">{{tienda.localizacion}}</span>
+
+
         <span *ngIf="tienda.zonasTrabajo" type="submit" class="icon">, </span>
-        <span *ngIf="tienda.zonasTrabajo"><span *ngFor="let zona of tienda.zonasTrabajo">{{zona.nombre}} </span></span>
+        <span *ngIf="tienda.zonasTrabajo">{{tienda.localizacion}}</span>
     </div>
     <div id="subs">
         <ul>

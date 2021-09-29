@@ -1,0 +1,662 @@
+@font-face {
+  font-family: "Poppins Bold";
+  src: url(../../../assets/fonts/Poppins-Bold.eot);
+
+  src: url(../../../assets/fonts/Poppins-Bold.eot?#iefix)
+      format("embedded-opentype"),
+    url(../../../assets/fonts/Poppins-Bold.woff2) format("woff2"),
+    url(../../../assets/fonts/Poppins-Bold.woff) format("woff"),
+    url(../../../assets/fonts/Poppins-Bold.ttf) format("truetype"),
+    url(../../../assets/fonts/Poppins-Bold.svg#Poppins-Bold) format("svg");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins Medium";
+  src: url(../../../assets/fonts/Poppins-Medium.eot);
+  src: url(../../../assets/fonts/Poppins-Medium.eot?#iefix)
+      format("embedded-opentype"),
+    url(../../../assets/fonts/Poppins-Medium.woff2) format("woff2"),
+    url(../../../assets/fonts/Poppins-Medium.woff) format("woff"),
+    url(../../../assets/fonts/Poppins-Medium.ttf) format("truetype"),
+    url(../../../assets/fonts/Poppins-Medium.svg#Poppins-Medium) format("svg");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins Regular";
+  src: url(../../../assets/fonts/Poppins-Regular.eot);
+  src: url(../../../assets/fonts/Poppins-Regular.eot?#iefix)
+      format("embedded-opentype"),
+    url(../../../assets/fonts/Poppins-Regular.woff2) format("woff2"),
+    url(../../../assets/fonts/Poppins-Regular.woff) format("woff"),
+    url(../../../assets/fonts/Poppins-Regular.ttf) format("truetype"),
+    url(../../../assets/fonts/Poppins-Regular.svg#Poppins-Regular) format("svg");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins Light";
+  src: url(../../../assets/fonts/Poppins-Light.eot);
+  src: url(../../../assets/fonts/Poppins-Light.eot?#iefix)
+      format("embedded-opentype"),
+    url(../../../assets/fonts/Poppins-Light.woff2) format("woff2"),
+    url(../../../assets/fonts/Poppins-Light.woff) format("woff"),
+    url(../../../assets/fonts/Poppins-Light.ttf) format("truetype"),
+    url(../../../assets/fonts/Poppins-Light.svg#Poppins-Light) format("svg");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+* {
+  box-sizing: border-box;
+}
+body,
+html {
+  padding: 0;
+  margin: 0;
+}
+body {
+}
+.holder {
+  background-color: #f5f5f5;
+  color: #6d6d6d;
+  font-family: "Poppins Regular", sans-serif;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -ms-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  -webkit-text-rendering: optimizeLegibility;
+  -moz-text-rendering: optimizeLegibility;
+  -ms-text-rendering: optimizeLegibility;
+  -o-text-rendering: optimizeLegibility;
+  text-rendering: optimizeLegibility;
+}
+b,
+h1,
+h2,
+h3,
+h4,
+h5,
+strong {
+  font-family: "Poppins Medium", sans-serif;
+  font-weight: 400;
+}
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+.bg-white {
+  background-color: #fff;
+}
+.color-red {
+  color: #e64a42;
+}
+.color-green {
+  color: #5fc460;
+}
+.text-center {
+  text-align: center;
+}
+.text-upper {
+  text-transform: uppercase;
+}
+.holder {
+  margin: 0 auto;
+  max-width: 720px;
+}
+.holder.with-button {
+  padding-bottom: 58px;
+}
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.block {
+  border-bottom: 1px solid #c2c2c2;
+  padding: 30px 0;
+}
+.block:last-child {
+  border-bottom: none;
+}
+.block .title {
+  margin-bottom: 20px;
+}
+.block .title h2 {
+  color: #252e40;
+  font-size: 20px;
+  margin: 0;
+}
+.img-fluid {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+.btn-primary {
+  background: #57a12e;
+  background: linear-gradient(90deg, #57a12e 0, #7abe4e 100%);
+  border: none;
+  border-radius: 5em;
+  color: #fff;
+  display: block;
+  font-family: "Poppins Bold";
+  font-size: 16px;
+  margin: 0 auto;
+  max-width: 225px;
+  padding: 11px 10px;
+  text-align: center;
+  width: 100%;
+}
+.btn-secondary {
+  background: 0 0;
+  border: 1px solid #161c24;
+  border-radius: 5em;
+  color: #252e40;
+  display: block;
+  font-family: "Poppins Medium";
+  font-size: inherit;
+  margin: 0 auto;
+  max-width: 225px;
+  padding: 10px 10px;
+  text-align: center;
+  width: 100%;
+}
+.advice {
+  background: #e9f2fa;
+  border-radius: 12px;
+  display: flex;
+  padding: 15px 15px;
+}
+.advice .icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+  width: 20px;
+}
+.advice .text {
+  color: #252e40;
+  line-height: 140%;
+  margin-left: 10px;
+}
+form .input-container {
+  margin-bottom: 20px;
+}
+form .input-container:last-child {
+  margin-bottom: 0;
+}
+
+.abajo {
+  
+  transform: rotate(180deg);
+}
+
+.arriba {
+  transform: rotate(360deg);
+}
+.custom-select {
+  background: #fff no-repeat 95% center
+    url(../../../assets/images/icon-chevron-right.svg);
+  background-size: 18px auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+  color: #252e40;
+  cursor: pointer;
+  font-family: "Poppins Medium";
+  font-size: 15px;
+  padding: 25px 25px;
+}
+input[type="text"] {
+  background: 0 0;
+  border: 1px solid #c2c2c2;
+  border-radius: 8px;
+  color: inherit;
+  display: block;
+  font-family: inherit;
+  font-size: 17px;
+  outline: 0;
+  padding: 10px 10px;
+  width: 100%;
+}
+.chat-btn {
+  background: no-repeat center center url(../../../assets/images/chat-bg.svg);
+  background-size: 120% auto;
+  border: none;
+  bottom: 0;
+  color: #fff;
+  font-family: "Poppins Regular", sans-serif;
+  font-size: 17px;
+  left: 0;
+  margin: 0;
+  padding: 16px 10px;
+  position: fixed;
+  width: 100%;
+  z-index: 9;
+  display: none !important;
+  visibility: hidden !important;
+}
+.chat-btn::after {
+  background: no-repeat center center url(../../../assets/images/icon-chat.svg);
+  background-size: cover;
+  content: "";
+  display: inline-block;
+  height: 22px;
+  margin-left: 20px;
+  vertical-align: middle;
+  width: 22px;
+}
+.store-card {
+  background: #fdfdfd no-repeat center top
+    url(../../../assets/images/header-bg.svg);
+  background-size: contain;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  box-shadow: 0 4px 15px 0 rgb(0 0 0 / 10%);
+  margin-bottom: 40px;
+  padding: 100px 0 20px;
+}
+.store-card .store-details,
+.store-card .store-tags {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.store-info {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 3px 0 rgb(0 0 0 / 10%);
+  display: flex;
+  margin-bottom: 15px;
+  padding: 20px 30px 20px 15px;
+  position: relative;
+}
+.store-info .image {
+  border-radius: 8px;
+  flex-shrink: 0;
+  max-width: 180px;
+  min-height: 1px;
+  overflow: hidden;
+  position: relative;
+  width: 40%;
+}
+.store-info .image::before {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+.store-info .image img {
+  height: 100%;
+  left: 0;
+  -o-object-fit: cover;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.store-info .detail {
+  color: #777f90;
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+  width: 100%;
+}
+.store-info .name {
+  color: #202020;
+  font-size: 16px;
+  margin: 0;
+}
+.store-info .category {
+  font-size: 12px;
+}
+.store-info .ranking {
+  background: no-repeat left center url(../../../assets/images/icon-star.svg);
+  background-size: 15px;
+  line-height: 100%;
+  margin-top: auto;
+  padding-left: 20px;
+}
+.store-info .share-btn {
+  background: no-repeat center center
+    url(../../../assets/images/icon-export.svg);
+  background-size: 20px 20px;
+  border: none;
+  height: 20px;
+  padding: 0;
+  position: absolute;
+  right: 10px;
+  text-indent: -9999em;
+  top: 10px;
+  width: 20px;
+}
+.store-details {
+  margin-bottom: 15px;
+}
+.store-details address {
+  font-style: normal;
+}
+.store-details address ul {
+  margin: 0.35em 0;
+  padding-left: 20px;
+}
+.store-details .detail {
+  border-bottom: 1px solid #c2c2c2;
+  display: flex;
+  padding: 15px 0;
+}
+.store-details .icon {
+  flex-shrink: 0;
+  width: 20px;
+}
+.store-details .icon img {
+  width: 100%;
+}
+.store-details .content {
+  margin-left: 15px;
+  width: 100%;
+}
+.store-details .schedule-status {
+  margin-left: 5px;
+}
+.store-details .schedule {
+  margin-top: 20px;
+}
+.store-details .schedule > div {
+  display: flex;
+  margin-bottom: 5px;
+}
+.store-details .schedule > div:last-child {
+  margin-bottom: 0;
+}
+.store-details span:nth-child(1) {
+  flex-shrink: 0;
+  width: 85px;
+}
+.store-details span:nth-child(2) {
+  width: 100%;
+}
+.store-tags {
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+.store-tags ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0 0 15px;
+  padding: 0;
+}
+.store-tags li {
+  background-color: #e49c38;
+  color: #252e40;
+  font-family: "Poppins Bold";
+  font-size: 12px;
+  margin-bottom: 10px;
+  margin-right: 20px;
+  padding: 3px 8px;
+  position: relative;
+}
+.store-tags li::after,
+.store-tags li::before {
+  border-style: solid;
+  content: "";
+  height: 0;
+  position: absolute;
+  right: -10px;
+  width: 0;
+}
+.store-tags li::before {
+  border-color: #e49c38 transparent transparent transparent;
+  border-width: 14px 10px 0 0;
+  top: 0;
+}
+.store-tags li::after {
+  border-color: transparent transparent transparent #e49c38;
+  border-width: 14px 0 0 10px;
+  bottom: 0;
+}
+.store-tags li:last-child {
+  margin-right: 0;
+}
+.store-tags .detail-btn {
+  background: 0 0;
+  border: none;
+  color: #7abe4e;
+  cursor: pointer;
+  display: block;
+  font-family: "Poppins Medium";
+  margin: 0 auto;
+  padding: 5px 10px;
+  text-align: center;
+  width: 160px;
+}
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -5px;
+  margin-right: -5px;
+  padding-bottom: 40px;
+}
+.product-card {
+  flex-shrink: 0;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-bottom: 15px;
+  width: 50%;
+}
+.product-card a {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 3px 0 rgb(0 0 0 / 10%);
+  color: inherit;
+  display: block;
+  padding: 10px 10px 20px;
+  text-decoration: none;
+}
+.product-card .image {
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  position: relative;
+}
+.product-card .image::before {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+.product-card .image img {
+  height: 100%;
+  left: 0;
+  -o-object-fit: cover;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.product-card .image .no-imagen {
+  height: 24px;
+  left: 50%;
+  -o-object-fit: initial;
+  object-fit: initial;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 25px;
+}
+.product-card .name {
+  color: #252e40;
+  font-size: 17px;
+  line-height: 140%;
+  margin-bottom: 5px;
+}
+.product-card .price {
+  color: #767f90;
+  font-size: 12px;
+}
+.product-features .feature {
+  border-bottom: 1px solid #c2c2c2;
+  display: flex;
+}
+.product-features .feature:last-child {
+  border-bottom: 1px solid transparent;
+}
+.product-features .feature div:nth-child(1) {
+  padding: 20px 0;
+  width: 40%;
+}
+.product-features .feature div:nth-child(2) {
+  background-color: #f6f8ff;
+  color: #202020;
+  font-family: "Poppins Medium";
+  padding: 20px 20px;
+  width: 60%;
+}
+.product-info .price {
+  color: #252e40;
+  font-family: "Poppins Medium";
+  font-size: 55px;
+}
+.collapsable-disabled .collapsable__head {
+  padding-right: 0;
+}
+.collapsable-disabled .collapsable__head::after {
+  content: none;
+}
+.collapsable__head {
+  cursor: pointer;
+  padding-right: 30px;
+  position: relative;
+}
+.pin{
+    height: 24px;
+    float:right;
+    padding-right:0px
+    
+}
+.collapsable__head::after {
+//   background: no-repeat center center
+//     url(../../../assets/images/icon-chevron-down.svg);
+//   background-size: 20px auto;
+  content: "";
+  display: block;
+  height: 12px;
+  margin-top: -6px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: rotate(180deg);
+  width: 20px;
+}
+
+.collapsable__content {
+  height: auto;
+  overflow: hidden;
+}
+.collapsable.collapsed .collapsable__content {
+  height: 0;
+}
+.collapsable.collapsed .collapsable__head::after {
+  transform: rotate(0);
+}
+.carrousel {
+  background-color: #fff;
+  border-radius: 8px;
+  margin-bottom: 25px;
+  padding: 15px 15px;
+  position: relative;
+}
+.carrousel::before {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+.swiper-container {
+  bottom: 15px;
+  left: 15px;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+}
+.swiper-container img {
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  width: 100%;
+}
+.swiper-pagination-bullet {
+  background-color: #d8d8d8;
+  opacity: 1;
+}
+.swiper-pagination-bullet-active {
+  background-color: #000;
+}
+.search-form {
+  background-color: #fff;
+  padding: 10px 0;
+  visibility: hidden !important;
+}
+.search-form input[type="text"] {
+  background: no-repeat 96% center
+    url(../../../assets/images/icon-magnifier.svg);
+
+  background-size: 20px;
+  padding-right: 45px;
+}
+.ticket-header {
+  color: #202020;
+  font-size: 15px;
+  font-family: "Poppins Medium";
+  text-align: center;
+}
+.ticket-header h2 {
+  font-family: "Poppins Bold";
+  font-size: 22px;
+  margin-top: 0;
+}
+.ticket-header .icon-whatsapp {
+  margin: 10px 20px 10px 0;
+  max-width: 50px;
+  vertical-align: middle;
+}
+.ticket-resume {
+  color: #202020;
+  font-size: 16px;
+  font-family: "Poppins Medium";
+}
+.ticket-resume .list {
+  margin: 10px 0;
+}
+.ticket-resume .row {
+  display: flex;
+  justify-content: space-between;
+}
+.ticket-resume .row div:nth-child(2) {
+  color: #767f90;
+}
+.ticket-footer {
+  color: #767f90;
+  font-family: "Poppins Medium";
+  text-align: center;
+  text-transform: uppercase;
+}
+@media screen and (min-width: 576px) {
+  .store-info .name {
+    font-size: 25px;
+    max-width: none;
+  }
+  .store-info .category {
+    font-size: 14px;
+  }
+  .store-details span:nth-child(1) {
+    width: 115px;
+  }
+  .product-card {
+    width: 33.33333%;
+  }
+}
+.flujo::before {
+  content: "Concepto: ";
+}

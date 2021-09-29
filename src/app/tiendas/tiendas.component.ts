@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Tienda } from './models/tienda.model';
 
 @Component({
   selector: 'app-tiendas',

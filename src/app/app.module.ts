@@ -17,7 +17,34 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { appReducers } from './app.reducer';
+import { TiendaComponent } from './tiendas/tienda/tienda.component';
+import { EffectsModule } from '@ngrx/effects';
+import { TiendaEffects } from './tiendas/tienda.effects';
+import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
+import { RouterStateSnapshot } from '@angular/router';
 
+
+
+export const effectsArr: any[] = [ TiendaEffects];
+
+export interface ParamsRouterState {
+  url: string;
+  params: {};
+  queryParams: {};
+}
+export class ParamsSerializer
+  implements RouterStateSerializer<ParamsRouterState> {
+  serialize(routerState: RouterStateSnapshot): ParamsRouterState {
+    let route = routerState.root;
+    let { params, queryParams } = routerState.root;
+    while (route.firstChild) {
+      route = route.firstChild; params =
+        { ...params, ...route.params };
+      queryParams = { ...queryParams, ...route.queryParams };
+    }
+    return { url: routerState.url, params, queryParams };
+  }
+}
 
 
 @NgModule({
@@ -26,7 +53,8 @@ import { appReducers } from './app.reducer';
     TiendasComponent,
     ListTiendasComponent,
     TiendaItemComponent,
-    SearchComponent
+    SearchComponent,
+    TiendaComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +65,12 @@ import { appReducers } from './app.reducer';
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
-    })
+    }),
+    EffectsModule.forRoot(effectsArr),
+    StoreRouterConnectingModule.forRoot({ serializer: ParamsSerializer, })
+
+
+  
   ],
   providers: [],
   bootstrap: [AppComponent]

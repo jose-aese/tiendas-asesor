@@ -3,7 +3,8 @@ import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { AppState } from 'src/app/app.reducer';
-import { Tienda } from '../models/tienda.model';
+import { TiendaReducer } from 'src/app/models/tiendaReducer.model';
+import { Tienda } from '../../models/tienda.model';
 
 @Component({
   selector: 'list-tiendas',
@@ -17,7 +18,7 @@ export class ListTiendasComponent implements OnInit {
   constructor( private store: Store<AppState>) { }
 
   ngOnInit(): void {
-    this.store.select('tiendas').pipe(takeUntil(this.destroy$)).subscribe((tiendas:Tienda[]) =>  this.tiendas = tiendas);
+    this.store.select('tiendasReducer').pipe(takeUntil(this.destroy$)).subscribe((tiendaReducer:TiendaReducer) =>  this.tiendas = tiendaReducer.tiendas);
   }
 
   ngOnDestroy(): void {

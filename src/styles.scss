@@ -59,7 +59,8 @@
 }
 
 .card.highlight-card {
-  background-color: #1976d2;
+  // background-color: #1976d2;
+  background: url(./assets/images/header-bg.svg);
   color: white;
   font-weight: 600;
   border: none;
@@ -80,12 +81,70 @@
 }
 
 
+
+
+
+
+
+img#rocket {
+  width: 70px;
+  position: absolute;
+  left: -18px;
+  top: -10px;
+
+  // animation-name: rotate-gear;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+
+img#rocketNav {
+  animation-name: rotate-gear;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  width: 50px;
+}
+
+@keyframes rotate-gear {
+  from {
+      transform: rotateZ(0deg);
+  }
+  to {
+      transform: rotateZ(360deg);
+  }
+}
+
+img#rocket-smoke {
+  height: calc(100vh - 95px);
+  position: absolute;
+  top: 10px;
+  right: 180px;
+  z-index: -10;
+}
+
+
+
+
+
+
+
+
 // a span {
 //   color: black;
 // }
 
 /* Responsive Styles */
 @media screen and (max-width: 767px) {
+  .card{
+    width: 540px;
+  }
+  img#rocket-smoke {
+    right: 120px;
+    transform: rotate(-5deg);
+  }
+
   .card-container > *:not(.circle-link),
   .terminal {
     width: 100%;
@@ -93,7 +152,7 @@
 
   .card:not(.highlight-card) {
     height: 16px;
-    margin: 8px 0;
+    margin: 8px auto;
   }
 
   .card.highlight-card span {
@@ -101,3 +160,15 @@
   }
 }
 
+
+
+
+@media screen and (max-width: 575px) {
+  .card{
+    width: 358px;
+  }
+  img#rocket-smoke {
+    display: none;
+    visibility: hidden;
+  }
+}

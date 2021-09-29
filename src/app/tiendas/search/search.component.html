@@ -1,13 +1,22 @@
 <div id="header">
     <div id="search">
         <form #f="ngForm" (ngSubmit)="seleccionaEmpleado()" novalidate>
-            <input [(ngModel)]="empleado.num" name="num" type="text" maxlength="10"
-                placeholder="Solo caracteres Numericos" required autocomplete="off"
-                onkeypress="return (event.charCode >= 48 && event.charCode <= 57 || event.charCode == 13)" min="1">
-            <input type="submit" class="icon" value="L">
+            <div class="botones">
+                <input [(ngModel)]="empleado.num" name="num" type="text" maxlength="10"
+                    placeholder="Solo caracteres Numericos" required autocomplete="off"
+                    onkeypress="return (event.charCode >= 48 && event.charCode <= 57 || event.charCode == 13)" min="1">
+                <button>
+                    <img src="../assets/images/icon-magnifier.svg" alt="Icono Pin" />
+                </button>
+                <!-- <input type="submit"  value="ha"> -->
+
+
+
+            </div>
+
+
+            <!-- <input type="submit" style="background: url(../../../assets/images/icon-magnifier.svg)" value=""> -->
         </form>
     </div>
     <h1 *ngIf="numSeleccionado">{{numSeleccionado}}</h1>
 </div>
-
-
