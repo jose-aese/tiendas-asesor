@@ -22,6 +22,7 @@ export class Tienda {
   public logo:any
   public host:string
   public localizacion: string;
+  public productos: any;
 
   constructor(tienda: Tienda) {
     this.idUsuario = tienda.idUsuario;
@@ -45,5 +46,6 @@ export class Tienda {
     this.logo = tienda.logo;
     this.host = tienda.host;
     this.localizacion = tienda.localizacion;
+    this.productos = tienda.productos;
   }
 }

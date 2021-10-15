@@ -41,17 +41,19 @@
                             </div>
                             <div class="collapsable__content" *ngIf="horario">
                                 <div class="schedule" data-id="horario.dias">
-                                    <div *ngIf="!tienda.horario.disponibilidad"><span>Lunes </span><span>8:00 - 16:00</span></div>
-
-
-
-                                    <div *ngIf="tienda.horario.disponibilidad"><span class="siempre">Siempre disponible </span></div>
-                                    <!-- <div><span>Martes </span><span>11:00 - 12:00, 13:00 - 17:00</span></div>
-                                    <div><span>Miércoles </span><span>8:00 - 16:00</span></div>
-                                    <div><span>Jueves </span><span>8:00 - 16:00</span></div>
-                                    <div><span>Viernes </span><span>8:00 - 16:00</span></div>
-                                    <div><span>Sábado </span><span>8:00 - 16:00</span></div>
-                                    <div><span>Domingo </span><span>Cerrado</span></div> -->
+                                    <div *ngIf="!tienda.horario.disponibilidad">
+                                        <ul id="horarios">
+                                            <li *ngFor="let dia of dias">
+                                                <span > {{dia.dia}} </span>
+                                                <ul>
+                                                    <li *ngFor="let hora of dia.horas">
+                                                    <span>{{hora}}:00</span>
+                                                </li>
+                                            </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div *ngIf="tienda.horario.disponibilidad"><span class="siempre">Siempre disponible </span></div>                        
                                 </div>
                             </div>
                         </div>
@@ -68,9 +70,17 @@
             </div>
         </div>
     </div>
-    <div class="container">
-        <!-- Product list -->
-        <div class="product-list" data-id="productos">
+    <div class="container" *ngIf="tienda.productos">
+        <div class="product-list">
+            <div class="product-card" *ngFor="let producto of tienda.productos">
+                <a class="fake-control">
+                    <div class="image">
+                        <img src="https://minegocio.bazappgs.com/{{producto.imagenes[0].referencia}}" alt="Sin Foto">
+                    </div>
+                    <div class="name"><strong>{{producto.nombre}}</strong></div>
+                    <div class="price">${{producto.precio}}</div>
+                </a>
+            </div>
         </div>
     </div>
 

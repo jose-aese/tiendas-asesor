@@ -14,7 +14,7 @@ import { AppState } from 'src/app/app.reducer';
 })
 export class SearchComponent implements OnInit {
   empleado = {
-    num: 1028575,
+    num: 1026882,
   };
   numSeleccionado: number;
   tiendas: any;

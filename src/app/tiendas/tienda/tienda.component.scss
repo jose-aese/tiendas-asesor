@@ -193,7 +193,6 @@ form .input-container:last-child {
 }
 
 .abajo {
-  
   transform: rotate(180deg);
 }
 
@@ -531,16 +530,15 @@ input[type="text"] {
   padding-right: 30px;
   position: relative;
 }
-.pin{
-    height: 24px;
-    float:right;
-    padding-right:0px
-    
+.pin {
+  height: 24px;
+  float: right;
+  padding-right: 0px;
 }
 .collapsable__head::after {
-//   background: no-repeat center center
-//     url(../../../assets/images/icon-chevron-down.svg);
-//   background-size: 20px auto;
+  //   background: no-repeat center center
+  //     url(../../../assets/images/icon-chevron-down.svg);
+  //   background-size: 20px auto;
   content: "";
   display: block;
   height: 12px;
@@ -662,8 +660,26 @@ input[type="text"] {
   content: "Concepto: ";
 }
 
-
-
-.siempre{
+.siempre {
   width: auto;
+}
+
+#horarios {
+  padding-right: 0px;
+  padding-left: 0px;
+  padding-bottom: 0px;
+  padding-top: 0px;
+  margin: 0px;
+  li {
+    list-style-type: none;
+    display: inline;
+    padding-right: 5px;
+    color: gray;
+  }
+
+  li:last-child {
+    strong {
+      display: none;
+    }
+  }
 }

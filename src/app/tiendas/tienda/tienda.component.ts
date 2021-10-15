@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { AppState } from 'src/app/app.reducer';
-import { Horario } from 'src/app/models/horario.model';
+import { Dia, Horario } from 'src/app/models/horario.model';
 import { TiendaReducer } from 'src/app/models/tiendaReducer.model';
 import { Tienda } from '../../models/tienda.model';
 
@@ -19,6 +19,7 @@ export class TiendaComponent implements OnInit {
   public open: boolean;
   public openTitle: string;
   private destroy$: Subject<void> = new Subject<void>();
+  public dias: Dia[];
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
@@ -27,6 +28,7 @@ export class TiendaComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe((tiendaSelec: TiendaReducer) => {
         this.tienda = tiendaSelec.tienda;
+        console.log(this.tienda);
         this.abierto(this.tienda.horario);
         if (this.tienda) this.show = true;
       });
@@ -39,9 +41,11 @@ export class TiendaComponent implements OnInit {
       this.horario = true;
       return;
     } else {
-      this.open = false;
-      this.horario = false;
-      this.openTitle = 'Cerrado';
+
+      this.dias = horas.dias;
+      // this.open = false;
+      // this.horario = false;
+      // this.openTitle = 'Cerrado';
     }
   };
 
