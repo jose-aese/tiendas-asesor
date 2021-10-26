@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
+import Amplify, { Auth } from 'aws-amplify';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -22,8 +25,24 @@ import { EffectsModule } from '@ngrx/effects';
 import { TiendaEffects } from './tiendas/tienda.effects';
 import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { RouterStateSnapshot } from '@angular/router';
+import { ProductoComponent } from './productos/producto/producto.component';
+import { LoginComponent } from './login/login.component';
 
 
+Amplify.configure({
+  Auth: {
+
+    // REQUIRED - Amazon Cognito Region
+    region: 'us-east-1',
+
+    // OPTIONAL - Amazon Cognito User Pool ID
+    userPoolId: 'us-east-1_l28ZnZfWw',
+
+    // OPTIONAL - Amazon Cognito Web Client ID (26-char alphanumeric string)
+    userPoolWebClientId: 'vj3lc3com6fcjd5p4d65sp9pn',
+    //userPoolWebClientId: '60f8or2nvin7pt7ufe8h2g13ug',
+  }
+});
 
 export const effectsArr: any[] = [ TiendaEffects];
 
@@ -54,11 +73,14 @@ export class ParamsSerializer
     ListTiendasComponent,
     TiendaItemComponent,
     SearchComponent,
-    TiendaComponent
+    TiendaComponent,
+    ProductoComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    AmplifyUIAngularModule,
     FormsModule,
     HttpClientModule,
     StoreModule.forRoot(appReducers),
@@ -68,8 +90,6 @@ export class ParamsSerializer
     }),
     EffectsModule.forRoot(effectsArr),
     StoreRouterConnectingModule.forRoot({ serializer: ParamsSerializer, })
-
-
   
   ],
   providers: [],

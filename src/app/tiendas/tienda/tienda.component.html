@@ -7,12 +7,23 @@
                     <img data-id="logo.referencia" src={{tienda.host}} alt="No existe imagen de la tienda" />
                 </div>
                 <div class="detail">
-                    <h2 class="name" data-id="nombreTienda">{{tienda.nombreTienda}}</h2>
-                    <div class="category"><strong data-id="categoria.nombre">{{tienda.categoria.nombre}}</strong></div>
+                    <div class="title">
+                        <h2 class="name" data-id="nombreTienda">{{tienda.nombreTienda}}</h2>
+                        <span id="edit" type="submit" class="icon" (click)="edit()">S</span>
+                    </div>
+
+                    <div *ngIf="!editando || !validado" class="category"><strong
+                            data-id="categoria.nombre">{{tienda.categoria.nombre}}</strong></div>
+
+                    <select *ngIf="editando && validado" name="miselect" [(ngModel)]="seleccionado" (ngModelChange)="selectCat()">
+                        <option [value]="categoria.id" *ngFor="let categoria of categorias">{{categoria.nombre}}
+                        </option>
+                    </select>
+
+
                     <div class="ranking" data-id="calificacion">{{tienda.calificacion}}</div>
                 </div>
 
-                <!-- <button class="share-btn fake-control">Compartir</button> -->
             </div>
 
             <div class="store-details">
@@ -32,7 +43,8 @@
                         <div class="collapsable" data-id="horario.disponibilidad">
                             <div class="collapsable__head" (click)="hora()">
                                 <div><b>Horario </b>
-                                    <span [ngClass]="{'color-green': open==true, 'color-red': open==false}">{{openTitle}}</span>
+                                    <span
+                                        [ngClass]="{'color-green': open==true, 'color-red': open==false}">{{openTitle}}</span>
                                     <img [ngClass]="{'abajo': horario==true, 'arriba': horario==false}"
                                         class="collapsable__head pin" src="../../../assets/images/icon-chevron-down.svg"
                                         alt="Icono Pin" />
@@ -44,16 +56,17 @@
                                     <div *ngIf="!tienda.horario.disponibilidad">
                                         <ul id="horarios">
                                             <li *ngFor="let dia of dias">
-                                                <span > {{dia.dia}} </span>
+                                                <span> {{dia.dia}} </span>
                                                 <ul>
                                                     <li *ngFor="let hora of dia.horas">
-                                                    <span>{{hora}}:00</span>
-                                                </li>
-                                            </ul>
+                                                        <span>{{hora}}:00</span>
+                                                    </li>
+                                                </ul>
                                             </li>
                                         </ul>
                                     </div>
-                                    <div *ngIf="tienda.horario.disponibilidad"><span class="siempre">Siempre disponible </span></div>                        
+                                    <div *ngIf="tienda.horario.disponibilidad"><span class="siempre">Siempre disponible
+                                        </span></div>
                                 </div>
                             </div>
                         </div>
@@ -63,26 +76,44 @@
 
             <!-- Store tags -->
             <div class="store-tags">
-                <ul data-id="categoria.subcategorias">
-                    <li *ngFor="let sub of tienda.categoria.subcategorias">{{sub.nombre}}</li>
+                <ul *ngIf="!editando">
+                    <li *ngFor="let sub of tienda.categoria.subcategorias">
+                        <strong>{{sub.nombre}}</strong>
+                    </li>
+
                 </ul>
-                <button class="detail-btn fake-control">Detalle del negocio</button>
+                <div class="editSubs" *ngIf="editando">
+                    <ul>
+                        <li *ngFor="let sub of subCateSelec" (click)="deleteSubCate(sub.id)">
+                            <strong>{{sub.nombre}}</strong>
+                            <span type="submit" class="icon" >'</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
+
+
+
+
+
+            <div class="store-tags">
+                <div class="editSubs" *ngIf="editando">
+                    <ul>
+                        <li id="subAdd" *ngFor="let sub of subCat" (click)="addSubCate(sub.id)">
+                            <strong>{{sub.nombre}}</strong>
+                            <span id="ad" type="submit" class="icon">+</span>
+                        </li>
+                    </ul>
+                </div>
+                <button *ngIf="editando" class="detail-btn fake-control" (click)="guardar()">Guardar</button>
+            </div>
+
         </div>
     </div>
     <div class="container" *ngIf="tienda.productos">
         <div class="product-list">
-            <div class="product-card" *ngFor="let producto of tienda.productos">
-                <a class="fake-control">
-                    <div class="image">
-                        <img src="https://minegocio.bazappgs.com/{{producto.imagenes[0].referencia}}" alt="Sin Foto">
-                    </div>
-                    <div class="name"><strong>{{producto.nombre}}</strong></div>
-                    <div class="price">${{producto.precio}}</div>
-                </a>
-            </div>
+            <app-producto class="product-card" [producto]="producto" *ngFor="let producto of tienda.productos">
+            </app-producto>
         </div>
     </div>
-
-    <button class="chat-btn fake-control">Enviar un mensaje</button>
 </div>

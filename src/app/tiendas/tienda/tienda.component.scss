@@ -259,6 +259,7 @@ input[type="text"] {
   box-shadow: 0 4px 15px 0 rgb(0 0 0 / 10%);
   margin-bottom: 40px;
   padding: 100px 0 20px;
+  margin-top: 75px;
 }
 .store-card .store-details,
 .store-card .store-tags {
@@ -381,6 +382,21 @@ input[type="text"] {
 .store-tags {
   padding-bottom: 5px;
   padding-top: 5px;
+  .editSubs{
+    display: grid;
+    grid-template-columns: repeat(15, 1fr);
+    gap: 10px;
+    ul{
+      grid-column: 1 / 15;
+    }
+    #ad{
+      grid-column: 15;
+      color: #8200FF;
+    }
+    span:hover{
+     cursor: pointer;
+    }
+  }
 }
 .store-tags ul {
   display: flex;
@@ -398,6 +414,22 @@ input[type="text"] {
   margin-right: 20px;
   padding: 3px 8px;
   position: relative;
+  strong{
+    text-align: left;
+  }
+  span{
+    margin-left: 3px;
+    color: red;
+  }
+  span:hover{
+   cursor: pointer;
+  }
+}
+.store-tags #subAdd {
+  background-color: #5DC137;
+}
+.store-tags li:hover{
+  cursor: pointer;
 }
 .store-tags li::after,
 .store-tags li::before {
@@ -418,6 +450,17 @@ input[type="text"] {
   border-width: 14px 0 0 10px;
   bottom: 0;
 }
+
+.store-tags #subAdd::before {
+  border-color: #5DC137 transparent transparent transparent;
+}
+.store-tags #subAdd::after {
+  border-color: transparent transparent transparent #5DC137;
+}
+
+
+
+
 .store-tags li:last-child {
   margin-right: 0;
 }
@@ -440,62 +483,7 @@ input[type="text"] {
   margin-right: -5px;
   padding-bottom: 40px;
 }
-.product-card {
-  flex-shrink: 0;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin-bottom: 15px;
-  width: 50%;
-}
-.product-card a {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 3px 0 rgb(0 0 0 / 10%);
-  color: inherit;
-  display: block;
-  padding: 10px 10px 20px;
-  text-decoration: none;
-}
-.product-card .image {
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  overflow: hidden;
-  position: relative;
-}
-.product-card .image::before {
-  content: "";
-  display: block;
-  padding-bottom: 100%;
-}
-.product-card .image img {
-  height: 100%;
-  left: 0;
-  -o-object-fit: cover;
-  object-fit: cover;
-  position: absolute;
-  top: 0;
-  width: 100%;
-}
-.product-card .image .no-imagen {
-  height: 24px;
-  left: 50%;
-  -o-object-fit: initial;
-  object-fit: initial;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 25px;
-}
-.product-card .name {
-  color: #252e40;
-  font-size: 17px;
-  line-height: 140%;
-  margin-bottom: 5px;
-}
-.product-card .price {
-  color: #767f90;
-  font-size: 12px;
-}
+
 .product-features .feature {
   border-bottom: 1px solid #c2c2c2;
   display: flex;
@@ -640,6 +628,19 @@ input[type="text"] {
   font-family: "Poppins Medium";
   text-align: center;
   text-transform: uppercase;
+}
+
+.title{
+  display: flex;
+  h2{
+    width: 100%;
+  }
+  #edit{
+    color: #8200FF;
+  }
+  #edit:hover{
+    cursor: pointer;
+  }
 }
 @media screen and (min-width: 576px) {
   .store-info .name {

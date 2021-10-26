@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./tiendas.component.scss'],
 })
 export class TiendasComponent implements OnInit {
-  
+  title = 'Tiendas';
 
   constructor(private router: Router) {}
 

@@ -25,4 +25,19 @@ export class TiendasService {
       })
     );
   }
+
+
+  categorias(): any {
+    let headers = new HttpHeaders().set(
+      'Content-Type',
+      'application/x-www-form-urlencoded'
+    );
+    const url = this.urlService + '/tiendas/categorias';
+
+    return from([1]).pipe(
+      concatMap((id) => {
+        return <Observable<any>>this.http.get(url, { headers });
+      })
+    );
+  }
 }
