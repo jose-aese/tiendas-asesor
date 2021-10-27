@@ -10,34 +10,28 @@ import { concatMap } from 'rxjs/operators';
 })
 export class TiendasService {
   private urlService = environment.ws;
-  constructor(public http: HttpClient) {}
+  constructor(public http: HttpClient) { }
 
   tiendas(numeroEmpleado: number): any {
-    let headers = new HttpHeaders().set(
-      'Content-Type',
-      'application/x-www-form-urlencoded'
-    );
-    const url = this.urlService + '/asesores/' + numeroEmpleado;
 
-    return from([1]).pipe(
-      concatMap((id) => {
-        return <Observable<any>>this.http.get(url, { headers });
-      })
-    );
+    const url = this.urlService + '/tiendas/busquedas';
+    let body  = {
+      filtros:[],
+      ha:222
+    };
+    return <Observable<any>>this.http.post(url,body);
   }
 
 
   categorias(): any {
-    let headers = new HttpHeaders().set(
-      'Content-Type',
-      'application/x-www-form-urlencoded'
-    );
+    
     const url = this.urlService + '/tiendas/categorias';
-
-    return from([1]).pipe(
-      concatMap((id) => {
-        return <Observable<any>>this.http.get(url, { headers });
-      })
-    );
+    //const url = "https://api.bazappgs.com/superapp/elektra/transformacion-digital/gestion-tiendas/v1/tiendas/categorias"
+    return this.http.get(url)
+    /*  return from([1]).pipe(
+        concatMap((id) => {
+          return <Observable<any>>this.http.get(url, { headers: headers });
+        })
+      );*/
   }
 }

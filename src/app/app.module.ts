@@ -2,13 +2,15 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
-import Amplify, { Auth } from 'aws-amplify';
+import Amplify, { Auth, Interactions } from 'aws-amplify';
+import {  AmplifyModules, AmplifyService } from 'aws-amplify-angular';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TiendasComponent } from './tiendas/tiendas.component';
 import { ListTiendasComponent } from './tiendas/list-tiendas/list-tiendas.component';
 import { TiendaItemComponent } from './tiendas/tienda-item/tienda-item.component';
@@ -27,6 +29,7 @@ import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router
 import { RouterStateSnapshot } from '@angular/router';
 import { ProductoComponent } from './productos/producto/producto.component';
 import { LoginComponent } from './login/login.component';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 
 Amplify.configure({
@@ -44,7 +47,7 @@ Amplify.configure({
   }
 });
 
-export const effectsArr: any[] = [ TiendaEffects];
+export const effectsArr: any[] = [TiendaEffects];
 
 export interface ParamsRouterState {
   url: string;
@@ -78,9 +81,10 @@ export class ParamsSerializer
     LoginComponent
   ],
   imports: [
+   // AmplifyAngularModule,
     BrowserModule,
     AppRoutingModule,
-    AmplifyUIAngularModule,
+     AmplifyUIAngularModule,
     FormsModule,
     HttpClientModule,
     StoreModule.forRoot(appReducers),
@@ -90,9 +94,25 @@ export class ParamsSerializer
     }),
     EffectsModule.forRoot(effectsArr),
     StoreRouterConnectingModule.forRoot({ serializer: ParamsSerializer, })
-  
+
   ],
-  providers: [],
+  providers: [
+    {
+      provide: AmplifyService,
+      useFactory: () => {
+        return AmplifyModules({
+          Auth,
+          Storage,
+          Interactions
+        });
+      }
+    },
+    { 
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true   
+      }  
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

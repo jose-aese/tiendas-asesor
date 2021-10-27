@@ -1,8 +1,10 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ChangeDetectorRef, Component, NgZone, OnInit } from '@angular/core';
-import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-amplify/ui-components';
+import { Component, NgZone, OnInit } from '@angular/core';
+import { CognitoUserInterface, } from '@aws-amplify/ui-components';
+
 import { Router } from '@angular/router';
-import { Amplify } from 'aws-amplify';
+
+import { AmplifyService } from 'aws-amplify-angular';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 @Component({
   selector: 'app-login',
@@ -12,27 +14,31 @@ import { Amplify } from 'aws-amplify';
 
 
 export class LoginComponent implements OnInit {
+
+
+  myValueSub: Subscription;
   user: CognitoUserInterface | undefined;
-  authState: AuthState;
-  constructor(private http: HttpClient, private ref: ChangeDetectorRef, private router: Router, private ngZone: NgZone) {
+  constructor(
+    private router: Router,
+    private ngZone: NgZone,
+    private amplifyService: AmplifyService) {
+    this.amplifyService = amplifyService;
+    this.myValueSub = this.amplifyService.authStateChange$.subscribe(authState => {
+      console.log(authState)
+      if (authState.state === "signedIn") {
+        this.user = authState.user as CognitoUserInterface;
+        localStorage.setItem("usrtkn", this.user.signInUserSession.accessToken.jwtToken)
+        this.ngZone.run(() => this.router.navigate(['/tiendas'])).then();
+      }
+
+    })
   }
 
   ngOnInit() {
-    onAuthUIStateChange((authState, authData) => {
-      this.authState = authState;
-      console.log(this.authState);
-      console.log(authData);
-      if ("signedin" == this.authState) {
-        this.user = authData as CognitoUserInterface;
-        localStorage.setItem("usrtkn",this.user.signInUserSession.accessToken.jwtToken)
-        this.ngZone.run(() => this.router.navigate(['/tiendas'])).then();
-      }
-   
-      this.ref.detectChanges();
-      
-    })
   }
   ngOnDestroy() {
-    return onAuthUIStateChange;
+    if (this.myValueSub) {
+      this.myValueSub.unsubscribe();
+    }
   }
 }
