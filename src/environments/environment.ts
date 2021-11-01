@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  ws: 'http://ALB-DEV-CHM-DMZ-Ext-1264263189.us-east-1.elb.amazonaws.com',
+  ws: 'localhost/api/'
 };
 
 /*

@@ -34,11 +34,12 @@ export class SearchComponent implements OnInit {
         map((response: ResponseServer) =>
           response.codigo ==
           '200.Elektra-Transformacion-Digital-Gestion-Tiendas.0000'
-            ? response.resultado
+            ? response.resultado.tiendas
             : []
         )
       )
       .subscribe((tiendas: Tienda[]) => {
+        console.log(tiendas);
         this.tiendas = tiendas;
         this.tiendas.forEach((tienda: Tienda) => {
           if (!tienda.logo || !tienda.logo.referencia) tienda.host = null;

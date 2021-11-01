@@ -49,7 +49,7 @@ export class TiendaComponent implements OnInit {
           this.router.navigate(['/']);
         }
       },
-      (err) => {
+      () => {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',

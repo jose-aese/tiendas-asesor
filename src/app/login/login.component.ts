@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
       console.log(authState)
       if (authState.state === "signedIn") {
         this.user = authState.user as CognitoUserInterface;
+        console.log(this.user.signInUserSession);
         localStorage.setItem("usrtkn", this.user.signInUserSession.accessToken.jwtToken)
         this.ngZone.run(() => this.router.navigate(['/tiendas'])).then();
       }

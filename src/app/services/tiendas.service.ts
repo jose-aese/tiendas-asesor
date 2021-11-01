@@ -13,8 +13,7 @@ export class TiendasService {
   constructor(public http: HttpClient) { }
 
   tiendas(numeroEmpleado: number): any {
-
-    const url = this.urlService + '/tiendas/busquedas';
+   const url = this.urlService + '/tiendas/busquedas';
     let body  = {
       filtros:[],
       ha:222
@@ -26,7 +25,6 @@ export class TiendasService {
   categorias(): any {
     
     const url = this.urlService + '/tiendas/categorias';
-    //const url = "https://api.bazappgs.com/superapp/elektra/transformacion-digital/gestion-tiendas/v1/tiendas/categorias"
     return this.http.get(url)
     /*  return from([1]).pipe(
         concatMap((id) => {
