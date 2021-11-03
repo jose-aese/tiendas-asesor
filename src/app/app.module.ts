@@ -30,6 +30,8 @@ import { RouterStateSnapshot } from '@angular/router';
 import { ProductoComponent } from './productos/producto/producto.component';
 import { LoginComponent } from './login/login.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { metaReducers } from './metaReducers';
+import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
 
 
 Amplify.configure({
@@ -87,7 +89,11 @@ export class ParamsSerializer
      AmplifyUIAngularModule,
     FormsModule,
     HttpClientModule,
-    StoreModule.forRoot(appReducers),
+    StoreModule.forRoot((appReducers), {
+      runtimeChecks: {
+      },
+      metaReducers,
+    }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
@@ -111,7 +117,8 @@ export class ParamsSerializer
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true   
-      }  
+      },
+      { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

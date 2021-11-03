@@ -28,11 +28,15 @@
     "@ngrx/store-devtools": "^12.4.0",
     "aws-amplify": "^4.3.3",
     "aws-amplify-angular": "^6.0.21",
+    "browser-crypto": "^1.4.0",
     "cli": "^1.0.1",
+    "json-schema-filter": "^0.1.5",
     "lite-server": "^2.6.1",
+    "ngrx-store-localstorage": "^12.0.1",
     "rxjs": "~6.6.0",
     "sweetalert2": "^11.1.9",
     "tslib": "^2.0.0",
+    "uuid": "^8.3.2",
     "zone.js": "~0.11.3"
   },
   "devDependencies": {
@@ -41,7 +45,6 @@
     "@angular/compiler-cli": "~11.2.0",
     "@ngrx/schematics": "^12.4.0",
     "@types/jasmine": "~3.6.0",
-    "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",

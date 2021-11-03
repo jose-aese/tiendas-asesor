@@ -20,6 +20,19 @@ export function tiendaReducer(
         ...state,
         tienda: tiendaSelecionada,
       };
+
+    case fromTiendas.BORRARTIENDAS:
+      return {
+        ...state,
+        tiendas: [],
+      };
+
+      case fromTiendas.SIGNOUT:
+      return {
+        ...state,
+        tiendas: [],
+        tienda: null
+      };
     default:
       return state;
   }

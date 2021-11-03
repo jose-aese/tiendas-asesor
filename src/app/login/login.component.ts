@@ -24,20 +24,20 @@ export class LoginComponent implements OnInit {
     private amplifyService: AmplifyService) {
     this.amplifyService = amplifyService;
     this.myValueSub = this.amplifyService.authStateChange$.subscribe(authState => {
-      console.log(authState)
       if (authState.state === "signedIn") {
         this.user = authState.user as CognitoUserInterface;
-        console.log(this.user.signInUserSession);
-        localStorage.setItem("usrtkn", this.user.signInUserSession.accessToken.jwtToken)
+        localStorage.setItem("usrtkn", this.user.signInUserSession.idToken.jwtToken)
+        localStorage.setItem("username", this.user.username)
         this.ngZone.run(() => this.router.navigate(['/tiendas'])).then();
       }
 
     })
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    // This is intentional
   }
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if (this.myValueSub) {
       this.myValueSub.unsubscribe();
     }

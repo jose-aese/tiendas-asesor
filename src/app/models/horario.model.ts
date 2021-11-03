@@ -9,7 +9,7 @@ export class Horario {
 }
 
 export class Dia {
-  public dia: boolean;
+  public dia: string;
   public horas: number[];
 
   constructor(dia: Dia) {

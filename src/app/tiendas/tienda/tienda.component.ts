@@ -2,13 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
 import { AppState } from 'src/app/app.reducer';
 import { Dia, Horario } from 'src/app/models/horario.model';
+import { ResponseServer } from 'src/app/models/responseServer.model';
 import { TiendaReducer } from 'src/app/models/tiendaReducer.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { TiendasService } from 'src/app/services/tiendas.service';
 import Swal from 'sweetalert2';
 import { Tienda } from '../../models/tienda.model';
+
 
 @Component({
   selector: 'app-tienda',
@@ -29,33 +32,42 @@ export class TiendaComponent implements OnInit {
   public subCat: any[];
   public seleccionado: any;
   public validado: boolean;
+  public diasSemana: any[];
+  public horasDias: any[];
   constructor(
     private store: Store<AppState>,
     private tiendasService: TiendasService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
-    this.tiendasService.categorias().subscribe(
-      (response) => {
-        if (response.resultado && response.resultado.categorias) {
-          this.categorias = response.resultado.categorias;
+    this.tiendasService.categorias().pipe(
+      map((response: ResponseServer) =>
+        response.codigo ==
+          '200.Elektra-Transformacion-Digital-Gestion-Tiendas.0000'
+          ? response.resultado.categorias
+          : []
+      )
+    ).subscribe(
+      (response:  any[]): void => {
+        if (response.length > 0) {
+          this.categorias = response;
         } else {
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
             text: 'No se pudieron obtener las categorias!',
           });
-          this.router.navigate(['/']);
+          this.router.navigate(['/tiendas']);
         }
       },
-      () => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'No se pudieron obtener las categorias!',
-        });
-        this.router.navigate(['/']);
+      (err: { status: number; }) => {
+        console.log(err)
+        if (err.status == 401 || err.status == 403) {
+          this.authService.signOut();
+        } else
+          this.router.navigate(['/tiendas']);
       }
     );
 
@@ -65,8 +77,10 @@ export class TiendaComponent implements OnInit {
       .subscribe((tiendaSelec: TiendaReducer) => {
         this.tienda = tiendaSelec.tienda;
         console.log(this.tienda);
-        this.abierto(this.tienda.horario);
-        if (this.tienda) this.show = true;
+        if (this.tienda) {
+          this.abierto(this.tienda.horario);
+          if (this.tienda) this.show = true;
+        }
       });
   }
 
@@ -78,9 +92,9 @@ export class TiendaComponent implements OnInit {
       return;
     } else {
       this.dias = horas.dias;
-      // this.open = false;
-      // this.horario = false;
-      // this.openTitle = 'Cerrado';
+      this.diasSemana = diasArray;
+      this.horasDias = horasDiasArray;
+      //console.log('horarios:::',this.diasSemana);
     }
   };
 
@@ -101,7 +115,7 @@ export class TiendaComponent implements OnInit {
       }
     });
 
-    
+
     this.subCateSelec.sort((a, b) => {
       if (a.nombre < b.nombre) return -1;
       if (a.nombre > b.nombre) return 1;
@@ -112,6 +126,37 @@ export class TiendaComponent implements OnInit {
   hora() {
     this.horario = !this.horario;
   }
+
+  seleccioinarDias() {
+    const listaDias = document.getElementById("horarios");
+    let listDias = listaDias.getElementsByClassName('color-green');
+    let arrayDias = Array.from(listDias);
+    for (let diaSemana of arrayDias) {
+      for (let diaSeleccionado of this.dias) {
+        if (diaSemana.id == diaSeleccionado.dia) {
+          document.getElementById('' + diaSemana.id + '').classList.add('active');
+          this.seleccionarHoras(diaSeleccionado.horas, diaSeleccionado.dia)
+        }
+      }
+    }
+  }
+
+  seleccionarHoras(horas, dia) {
+    let listHoras = document.getElementsByClassName('color-red');
+    let arrHorasDisponibles = Array.from(listHoras);
+    for (let horaDisponible of arrHorasDisponibles) {
+      console.log('hora', horaDisponible.id);
+      for (let horaSelecionada of horas) {
+        console.log('hora seleccionada', horaSelecionada);
+        console.log('elemento', dia.concat('-', horaSelecionada))
+        if (horaDisponible.id == dia.concat('-', horaSelecionada)) {
+          console.log('coincidencia', dia.concat('-', horaSelecionada))
+          document.getElementById('' + horaDisponible.id + '').classList.add('horasActive');
+        }
+      }
+    }
+  }
+
   deleteSubCate(id) {
     this.subCateSelec = this.subCateSelec.filter((sub) => {
       if (sub.id != id) {
@@ -146,15 +191,30 @@ export class TiendaComponent implements OnInit {
     this.destroy$.complete();
   }
 
-  guardar(){
-    console.log(this.seleccionado);
-    console.log(this.subCateSelec)
+  guardar() {
+    let cat = this.categorias.filter((cat) => cat.id == this.seleccionado);
+    let categoria = {
+      "id": this.seleccionado,
+      "nombre": cat[0].nombre,
+      "subcategorias": this.subCateSelec
+    }
+    console.log(this.tienda)
+    localStorage.setItem('sicu', this.tienda.idUsuario);
+    // this.tiendasService.updateTienda(this.tienda.idTienda, categoria).subscribe(response => {
+    //   console.log(response);
+    // })
   }
 
-  validarCate(){
-    if(this.tienda.categoria.id ==  35 || this.tienda.categoria.id  == 22){
+  validarCate() {
+    if (this.tienda.categoria.id == 35 || this.tienda.categoria.id == 22) {
       return false
-    } 
+    }
     return true;
   }
+
+
+
 }
+
+let diasArray = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'];
+let horasDiasArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];

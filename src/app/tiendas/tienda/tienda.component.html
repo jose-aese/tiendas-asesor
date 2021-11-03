@@ -32,7 +32,7 @@
                         <img src="../../../assets/images/icon-location.svg" alt="Icono Pin" />
                     </div>
                     <div class="content">
-                        <address data-id="direccion">Av. Insurgentes 2345, Tlalpan, Ciudad de México</address>
+                        <address>{{tienda.localizacion}}</address>
                     </div>
                 </div>
                 <div class="detail">
@@ -49,21 +49,21 @@
                                         class="collapsable__head pin" src="../../../assets/images/icon-chevron-down.svg"
                                         alt="Icono Pin" />
                                 </div>
-
                             </div>
                             <div class="collapsable__content" *ngIf="horario">
                                 <div class="schedule" data-id="horario.dias">
                                     <div *ngIf="!tienda.horario.disponibilidad">
                                         <ul id="horarios">
-                                            <li *ngFor="let dia of dias">
-                                                <span> {{dia.dia}} </span>
+                                            <li *ngFor="let dia of diasSemana">                                        
+                                                <button id={{dia}} class='color-green'>{{dia}}</button>                                                
                                                 <ul>
-                                                    <li *ngFor="let hora of dia.horas">
-                                                        <span>{{hora}}:00</span>
+                                                    <li *ngFor="let hora of horasDias">
+                                                        <button id={{dia}}-{{hora}} class='color-red'>{{hora}}</button>                                                                                                                
                                                     </li>
-                                                </ul>
-                                            </li>
+                                                </ul>                                                
+                                            </li>                                            
                                         </ul>
+                                        <div class="hor" *ngIf="horario ? seleccioinarDias() : horario"></div>
                                     </div>
                                     <div *ngIf="tienda.horario.disponibilidad"><span class="siempre">Siempre disponible
                                         </span></div>
@@ -73,14 +73,12 @@
                     </div>
                 </div>
             </div>
-
             <!-- Store tags -->
             <div class="store-tags">
                 <ul *ngIf="!editando">
                     <li *ngFor="let sub of tienda.categoria.subcategorias">
                         <strong>{{sub.nombre}}</strong>
                     </li>
-
                 </ul>
                 <div class="editSubs" *ngIf="editando">
                     <ul>
@@ -91,11 +89,6 @@
                     </ul>
                 </div>
             </div>
-
-
-
-
-
             <div class="store-tags">
                 <div class="editSubs" *ngIf="editando">
                     <ul>
@@ -107,7 +100,6 @@
                 </div>
                 <button *ngIf="editando" class="detail-btn fake-control" (click)="guardar()">Guardar</button>
             </div>
-
         </div>
     </div>
     <div class="container" *ngIf="tienda.productos">

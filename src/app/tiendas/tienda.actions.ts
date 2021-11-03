@@ -6,6 +6,11 @@ export const AGREGAR_TIENDA = '[TIENDA] Agregar Tienda';
 
 export const SELECT_TIENDA = '[TIENDA] Seleccionar una Tienda';
 
+
+export const BORRARTIENDAS = '[TIENDA] Reinicia el Store de Tiendas';
+
+export const SIGNOUT = '[TIENDA] Reinicia todo el Store';
+
 export class AgregarTiendaActions implements Action {
     readonly type = AGREGAR_TIENDA;
 
@@ -18,4 +23,17 @@ export class SelectTiendaActions implements Action {
     constructor(public tienda: Tienda) {}
 }
 
-export type Acciones = AgregarTiendaActions | SelectTiendaActions ;
+
+export class BorrarTiendaActions implements Action {
+    readonly type = BORRARTIENDAS;
+
+    constructor() {}
+}
+export class SignOutActions implements Action {
+    readonly type = SIGNOUT;
+
+    constructor() {}
+}
+
+
+export type Acciones = AgregarTiendaActions | SelectTiendaActions | BorrarTiendaActions | SignOutActions ;

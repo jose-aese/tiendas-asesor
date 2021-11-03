@@ -1,4 +1,4 @@
-@font-face {
+/*@font-face {
   font-family: "Poppins Bold";
   src: url(../../../assets/fonts/Poppins-Bold.eot);
 
@@ -51,6 +51,7 @@
   font-style: normal;
   font-display: swap;
 }
+*/
 * {
   box-sizing: border-box;
 }
@@ -683,4 +684,20 @@ input[type="text"] {
       display: none;
     }
   }
+}
+
+
+.hor{
+  visibility:hidden;
+}
+
+
+.active{
+  color: red;
+  background-color: #6d6d6d;
+}
+
+.horasActive{
+  color: #252e40;
+  background-color: #c2c2c2;
 }
