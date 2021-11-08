@@ -32,6 +32,7 @@ import { LoginComponent } from './login/login.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { metaReducers } from './metaReducers';
 import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 Amplify.configure({
@@ -85,6 +86,7 @@ export class ParamsSerializer
   imports: [
    // AmplifyAngularModule,
     BrowserModule,
+    InfiniteScrollModule,
     AppRoutingModule,
      AmplifyUIAngularModule,
     FormsModule,

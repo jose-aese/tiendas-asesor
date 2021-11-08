@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpHandler, HttpRequest, HttpInterceptor, HttpEvent, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { throwError, Observable, TimeoutError } from 'rxjs';
-import { catchError, map, timeoutWith } from 'rxjs/internal/operators';
+import { catchError, map, timeoutWith } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { Spiner } from '../services/spiner.service';
 
@@ -55,8 +55,11 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                                 errorMessage = "Recurso no encontrado.";
                                 break;
                             case 400:
-                                errorMessage = error.error.mensaje;
+                                errorMessage = error.error.mensaje ||  "Surgió un Error.";;
                                 break;
+                            case 404:
+                                    errorMessage = error.error.mensaje ||  "Surgió un Error.";
+                                    break;
                             default:
                                 errorMessage = "Surgió un Error."
                                 break;

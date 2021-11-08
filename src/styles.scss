@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 @font-face {
   font-family: "WebSymbolsRegular";
   src: url("./assets/fonts/websymbols-regular-webfont.eot");
@@ -198,4 +202,15 @@ img#rocket-smoke {
     display: none;
     visibility: hidden;
   }
+}
+
+:root {
+  // --amplify-primary-color: #11a29b;
+  --amplify-primary-color: #5DC137;
+  // --amplify-primary-tint: #3f6060;
+  --amplify-primary-tint: #8200FF;
+  // --amplify-primary-shade: #2dba89;
+  --amplify-primary-shade: #8200FF;
+  // --amplify-background-color: #e0faf4;
+  --amplify-background-color: #E6F2FB;
 }

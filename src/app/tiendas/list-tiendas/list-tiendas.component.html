@@ -1,3 +1,5 @@
-<div class="card-container">
+<div infiniteScroll
+        (scrolled)="onScrollDown()" class="card-container">
     <tienda-item [tienda]="tienda" *ngFor="let tienda of tiendas"></tienda-item>
+    <button *ngIf="showButton" (click)="onScrollTop()" class="button">⬆️</button>
 </div>

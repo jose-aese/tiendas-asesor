@@ -11,6 +11,9 @@ export const BORRARTIENDAS = '[TIENDA] Reinicia el Store de Tiendas';
 
 export const SIGNOUT = '[TIENDA] Reinicia todo el Store';
 
+
+export const CATEGORIAS = '[TIENDA] Se  cargan las categorias';
+
 export class AgregarTiendaActions implements Action {
     readonly type = AGREGAR_TIENDA;
 
@@ -34,6 +37,11 @@ export class SignOutActions implements Action {
 
     constructor() {}
 }
+export class CargaCategorias implements Action {
+    readonly type = CATEGORIAS;
+
+    constructor(public categorias:any[]) {}
+}
 
 
-export type Acciones = AgregarTiendaActions | SelectTiendaActions | BorrarTiendaActions | SignOutActions ;
+export type Acciones = AgregarTiendaActions | SelectTiendaActions | BorrarTiendaActions | SignOutActions | CargaCategorias;

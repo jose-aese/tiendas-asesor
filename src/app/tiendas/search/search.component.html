@@ -1,22 +1,48 @@
 <div id="header">
-    <div id="search">
-        <form #f="ngForm" (ngSubmit)="seleccionaEmpleado()" novalidate>
-            <div class="botones">
-                <input [(ngModel)]="empleado.num" name="num" type="text" maxlength="10"
-                    placeholder="Solo caracteres Numericos" required autocomplete="off"
-                    onkeypress="return (event.charCode >= 48 && event.charCode <= 57 || event.charCode == 13)" min="1">
-                <button>
-                    <img src="../assets/images/icon-magnifier.svg" alt="Icono Pin" />
-                </button>
-                <!-- <input type="submit"  value="ha"> -->
+    <form #f="ngForm" (ngSubmit)="seleccionaEmpleado()" novalidate>
+        <div id="search">
+            <input [(ngModel)]="filtros.nomTienda" name="nomTienda" type="text" maxlength="30"
+                placeholder="Nombre Tienda" required autocomplete="off" min="1">
+        </div>
+        <div id="search">
+            <input [(ngModel)]="filtros.numAsesor" name="numAsesor" type="text" maxlength="10"
+                placeholder="Número Asesor" required autocomplete="off"
+                onkeypress="return (event.charCode >= 48 && event.charCode <= 57 || event.charCode == 13)" min="1">
+        </div>
+        <div id="search">
+            <select name="miselect" [(ngModel)]="seleccionado" (ngModelChange)="selectCat()">
+                <option [value]="undefined">Categoría</option>
+                <option [value]="categoria.id" *ngFor="let categoria of categorias">{{categoria.nombre}}
+                </option>
+            </select>
+        </div>
+        <div id="search">
+            <select name="miselectSub" [(ngModel)]="seleccionadoSubCat" (ngModelChange)="selectSubCat()">
+                <option [value]="undefined">SubCategoría</option>
+                <option [value]="sub.id" *ngFor="let sub of subCat">{{sub.nombre}}</option>
+            </select>
+        </div>
+        <div id="search">
+            <input [(ngModel)]="filtros.codigoPostal" name="codigoPostal" type="text" maxlength="5"
+                placeholder="Codigo Postal" required autocomplete="off"
+                onkeypress="return (event.charCode >= 48 && event.charCode <= 57 || event.charCode == 13)" min="1">
+        </div>
+        <div id="search">
+            <input [(ngModel)]="filtros.estado" name="estado" type="text" maxlength="20" placeholder="Estado" required
+                autocomplete="off" min="1">
+        </div>
+        <div id="search">
+            <input [(ngModel)]="filtros.colonia" name="colonia" type="text" maxlength="30" placeholder="Colonia"
+                required autocomplete="off" min="1">
+        </div>
+        <div id="search">
+            <input [(ngModel)]="filtros.numReg" name="numReg" type="text" maxlength="2"
+                placeholder="Número de Registros" required autocomplete="off"
+                onkeypress="return (event.charCode >= 48 && event.charCode <= 57 || event.charCode == 13)" min="1">
+        </div>
 
-
-
-            </div>
-
-
-            <!-- <input type="submit" style="background: url(../../../assets/images/icon-magnifier.svg)" value=""> -->
-        </form>
-    </div>
-    <h1 *ngIf="numSeleccionado">{{numSeleccionado}}</h1>
+        <div class="divBoton">
+            <button class="boton">Buscar</button>
+        </div>
+    </form>
 </div>

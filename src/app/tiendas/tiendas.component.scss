@@ -7,7 +7,14 @@
     align-items: center;
   }
   
-  
+  search{
+    display: block !important;
+    width: 87%;
+    max-width: 100%;
+  }
+  #search {
+    margin: 30px auto 32px;
+  }
   @media screen and (max-width: 575px) {
     .content{
       display: block;

@@ -3,7 +3,7 @@ import { Tienda } from '../models/tienda.model';
 import { TiendaReducer } from '../models/tiendaReducer.model';
 
 export function tiendaReducer(
-  state = { tiendas: [], tienda: null },
+  state = { tiendas: [], tienda: null, categorias: null },
   action: fromTiendas.Acciones
 ): TiendaReducer {
   switch (action.type) {
@@ -27,11 +27,18 @@ export function tiendaReducer(
         tiendas: [],
       };
 
-      case fromTiendas.SIGNOUT:
+    case fromTiendas.SIGNOUT:
       return {
         ...state,
         tiendas: [],
-        tienda: null
+        tienda: null,
+        categorias: null
+      };
+
+    case fromTiendas.CATEGORIAS:
+      return {
+        ...state,
+        categorias: action.categorias
       };
     default:
       return state;

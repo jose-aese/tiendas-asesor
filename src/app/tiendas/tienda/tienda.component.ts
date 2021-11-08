@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
-import { map, takeUntil } from 'rxjs/operators';
+import { map, take, takeUntil } from 'rxjs/operators';
 import { AppState } from 'src/app/app.reducer';
 import { Dia, Horario } from 'src/app/models/horario.model';
 import { ResponseServer } from 'src/app/models/responseServer.model';
@@ -11,6 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { TiendasService } from 'src/app/services/tiendas.service';
 import Swal from 'sweetalert2';
 import { Tienda } from '../../models/tienda.model';
+import { CargaCategorias } from '../tienda.actions';
 
 
 @Component({
@@ -37,45 +37,45 @@ export class TiendaComponent implements OnInit {
   constructor(
     private store: Store<AppState>,
     private tiendasService: TiendasService,
-    private router: Router,
     private authService: AuthService
   ) { }
 
   ngOnInit(): void {
-    this.tiendasService.categorias().pipe(
-      map((response: ResponseServer) =>
-        response.codigo ==
-          '200.Elektra-Transformacion-Digital-Gestion-Tiendas.0000'
-          ? response.resultado.categorias
-          : []
-      )
-    ).subscribe(
-      (response:  any[]): void => {
-        if (response.length > 0) {
-          this.categorias = response;
-        } else {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'No se pudieron obtener las categorias!',
-          });
-          this.router.navigate(['/tiendas']);
-        }
-      },
-      (err: { status: number; }) => {
-        console.log(err)
-        if (err.status == 401 || err.status == 403) {
-          this.authService.signOut();
-        } else
-          this.router.navigate(['/tiendas']);
-      }
-    );
-
     this.store
       .select('tiendasReducer')
-      .pipe(takeUntil(this.destroy$))
+      .pipe(takeUntil(this.destroy$),take(1))
       .subscribe((tiendaSelec: TiendaReducer) => {
         this.tienda = tiendaSelec.tienda;
+        if(tiendaSelec.categorias){
+          this.categorias = tiendaSelec.categorias;
+        }else {
+          this.tiendasService.categorias().pipe(
+            map((response: ResponseServer) =>
+              response.codigo ==
+                '200.Elektra-Transformacion-Digital-Gestion-Tiendas.0000'
+                ? response.resultado.categorias
+                : []
+            )
+          ).subscribe(
+            (response: any[]): void => {
+              if (response.length > 0) {
+                this.categorias = response;
+                const agregarCategorias = new CargaCategorias(this.categorias);
+                this.store.dispatch(agregarCategorias);
+              } else {
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Oops...',
+                  text: 'No se pudieron obtener las categorias!',
+                });
+              }
+            },
+            (err: { status: number; }) => {
+              console.log(err)
+              if (err.status == 401 || err.status == 403)
+                this.authService.signOut();
+            });
+        }
         console.log(this.tienda);
         if (this.tienda) {
           this.abierto(this.tienda.horario);

@@ -33,6 +33,7 @@
     "json-schema-filter": "^0.1.5",
     "lite-server": "^2.6.1",
     "ngrx-store-localstorage": "^12.0.1",
+    "ngx-infinite-scroll": "^10.0.1",
     "rxjs": "~6.6.0",
     "sweetalert2": "^11.1.9",
     "tslib": "^2.0.0",

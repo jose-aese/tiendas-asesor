@@ -15,6 +15,15 @@
   #twitter-logo:hover {
     opacity: 0.8;
   }
+  a{
+    margin: 20px;
+  }
+
+  a:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+  }
+
   position: absolute;
   top: 0;
   left: 0;

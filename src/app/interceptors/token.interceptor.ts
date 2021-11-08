@@ -16,12 +16,6 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(public auth: AuthService, private spiner: Spiner,) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
-    // let token = localStorage.getItem('usrtkn');  
-    // let tokenUsuario = localStorage.getItem('username');   
-    // console.log(token)  
-    // let sicu = null
-
     const reqClone = this.validacionMetodo(request);
     return next.handle(reqClone)
       .pipe(finalize(() => this.spiner.close()));
@@ -33,13 +27,12 @@ export class TokenInterceptor implements HttpInterceptor {
     let tokenUsuario = localStorage.getItem('username');
     console.log(token)
     let sicu = null;
-    switch (request.method) {
-      case `PUT`:
-        sicu = localStorage.getItem('sicu');
-      default:
-        sicu = "66666666666666666666666666666666";
+    if (request.method == 'PUT' || request.method == 'put') {
+      sicu = localStorage.getItem('sicu');
+    } else {
+      sicu = "66666666666666666666666666666666";
     }
-    let requestClone = request.clone({
+    return request.clone({
       setHeaders: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
@@ -49,7 +42,5 @@ export class TokenInterceptor implements HttpInterceptor {
         "x-idacceso": sicu
       }
     });
-
-    return requestClone;
   }
 }
